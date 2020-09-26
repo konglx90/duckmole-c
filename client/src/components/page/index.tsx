@@ -1,4 +1,5 @@
 import React from 'react'
+import { View, Editor } from '@tarojs/components'
 import { PageBlock } from './block'
 
 const Page: React.FC<{
@@ -10,10 +11,15 @@ const Page: React.FC<{
   console.log(pageContent, 'pageContent')
 
   if (!pageContent) {
-    return 'no content'
+    return ''
   }
 
-  return pageContent.map((block) => <PageBlock block={block} />)
+  return (
+    <View style={{ padding: '10px' }}>
+      {pageContent.map((block) => <PageBlock block={block} />)}
+      <Editor />
+    </View>
+  )
 }
 
 export {

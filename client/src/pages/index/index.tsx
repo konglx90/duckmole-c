@@ -5,6 +5,7 @@ import getCloud from "../../lib/cloud";
 import './index.less'
 
 import { Page } from '../../components/page';
+import KzRichText from '../../components/kz-rich-text';
 
 export default class Index extends Component<{}, {
   pageContent: string
@@ -44,6 +45,9 @@ export default class Index extends Component<{}, {
     return (
       <View className='index'>
         <Page pageContent={this.state.pageContent && JSON.parse(this.state.pageContent)} />
+
+        <KzRichText html={`<p>duck</p>`} />
+        <KzRichText html={`<p style="color: yellow;">yellow duck</p>`} />
       </View>
     )
   }

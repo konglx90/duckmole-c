@@ -16,7 +16,7 @@ export const extractAttr = (attributes, keyOrKeys: string | string[]) => {
 }
 
 export interface KzNode {
-  tagName?: 'p' | 'img' | 'span' | 'section' | 'strong'
+  tagName?: 'p' | 'img' | 'span' | 'section' | 'strong' | 'br' | 'h3'
   type: 'element' | 'text'
   children?: KzNode[]
   content?: string

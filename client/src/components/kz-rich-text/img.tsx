@@ -23,6 +23,7 @@ const KzElementImg: React.FC<{
       className='kzn-img'
       style={attrObj.style}
       src={attrObj.src}
+      mode='widthFix'
     />
   )
 }

@@ -18,7 +18,11 @@ const KzNodes: React.FC<{
     }
 
     // todo 看看怎么把 RichText 用上, 和 himalaya 解析出来的格式不太一样
-    if (node.tagName === 'p' || node.tagName === 'section') {
+    if (
+      node.tagName === 'p' ||
+      node.tagName === 'section' ||
+      node.tagName === 'h3'
+    ) {
       return (
         <KzElementP node={node}>
           <KzNodes nodes={node.children} />
@@ -35,6 +39,12 @@ const KzNodes: React.FC<{
       )
     }
 
+    // todo
+    if (node.tagName === 'br') {
+      return (
+        <View style={{ height: '10px' }}></View>
+      )
+    }
 
     if (node.tagName === 'img') {
       return (

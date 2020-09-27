@@ -6,6 +6,7 @@ import './index.less'
 
 import { Page } from '../../components/page';
 import KzRichText from '../../components/kz-rich-text';
+import { HARD_HTML } from './hard-html';
 
 export default class Index extends Component<{}, {
   pageContent: string
@@ -44,10 +45,15 @@ export default class Index extends Component<{}, {
   render () {
     return (
       <View className='index'>
-        <Page pageContent={this.state.pageContent && JSON.parse(this.state.pageContent)} />
+        {/* <Page pageContent={this.state.pageContent && JSON.parse(this.state.pageContent)} /> */}
 
         <KzRichText html={`<p>duck</p>`} />
         <KzRichText html={`<p style="color: yellow;">yellow duck</p>`} />
+        <KzRichText html={`<p>duck<p>inner duck</p></p>`} />
+
+        <KzRichText html={`<img src="//cdn.kuaizhan.com/kz-homepages/static/media/banner-anniversary.477b9752.png" />`} />
+
+        <KzRichText html={HARD_HTML} />
       </View>
     )
   }

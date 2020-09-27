@@ -8,7 +8,7 @@ const Page: React.FC<{
   pageContent
 }) => {
 
-  console.log(pageContent, 'pageContent')
+  // console.log(pageContent, 'pageContent')
 
   if (!pageContent) {
     return ''

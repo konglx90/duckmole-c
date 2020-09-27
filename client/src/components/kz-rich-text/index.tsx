@@ -1,39 +1,45 @@
 import React from 'react'
 import { View } from '@tarojs/components'
 import { parse } from './himalaya/index'
-
-interface Node {
-  tagName?: string
-  type: 'element' | 'text'
-  children?: Node[]
-  content?: string
-  attributes?: { key: string, value: string }[]
-}
-
-const extractAttr = (attributes, key) => {
-  return attributes?.reduce((acc, cur) => {
-    return cur.key === key ? cur.value : acc
-  }, undefined)
-}
+import { KzNode } from './utils'
+import KzElementP from './p'
+import KzElementImg from './img'
+import KzElementSpan from './span'
 
 const KzNodes: React.FC<{
-  nodes?: Node[]
+  nodes?: KzNode[]
 }> = ({
   nodes
 }) => {
   return nodes?.map(node => {
 
-    const attrStyle = extractAttr(node.attributes, 'style')
-
-    if (node.tagName === 'p') {
-      return <View className='kzn-p' style={attrStyle}>
-        <KzNodes nodes={node.children} />
-      </View>
-    }
-
     if (node.type === 'text') {
       return node.content
-    } 
+    }
+
+    // todo 看看怎么把 RichText 用上
+    if (node.tagName === 'p' || node.tagName === 'section') {
+      return (
+        <KzElementP node={node}>
+          <KzNodes nodes={node.children} />
+        </KzElementP>
+      )
+    }
+
+    if (node.tagName === 'span') {
+      return (
+        <KzElementSpan node={node}>
+          <KzNodes nodes={node.children} />
+        </KzElementSpan>
+      )
+    }
+
+
+    if (node.tagName === 'img') {
+      return (
+        <KzElementImg node={node} />
+      )
+    }
 
     return (
       <View>PAGE ERROR !!!</View>
@@ -47,6 +53,7 @@ const KzRichText: React.FC<{
   html
 }) => {
   const nodes = parse(html)
+  console.log(nodes)
   return <KzNodes nodes={nodes} />
 }
 

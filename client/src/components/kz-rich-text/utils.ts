@@ -8,13 +8,15 @@
  */
 export const extractAttr = (attributes, keyOrKeys: string | string[]) => {
   const keys = typeof keyOrKeys === 'string' ? [keyOrKeys] : keyOrKeys
+  const isAll = typeof keyOrKeys === 'undefined';
+
   return attributes?.reduce((acc, cur) => {
-    return keys.indexOf(cur.key) > -1 ? { ...acc, [cur.key]: cur.value} : acc
+    return isAll || keys.indexOf(cur.key) > -1 ? { ...acc, [cur.key]: cur.value} : acc
   }, {})
 }
 
 export interface KzNode {
-  tagName?: 'p' | 'img' | 'span'
+  tagName?: 'p' | 'img' | 'span' | 'section' | 'strong'
   type: 'element' | 'text'
   children?: KzNode[]
   content?: string
